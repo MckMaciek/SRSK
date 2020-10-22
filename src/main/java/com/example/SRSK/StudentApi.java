@@ -25,7 +25,7 @@ public class StudentApi {
     public static Student getByID(@RequestParam long index){
         Optional<Student> first = studentList.stream().
                 filter(element -> element.getId() == index).findFirst();
-                return first.get();
+        return first.get();
     }
     @PostMapping
     public static boolean addStudent(@RequestBody Student student){
