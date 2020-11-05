@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,19 +10,19 @@
 <body>
 <!-- Sidebar/menu -->
 
+
 <div class="nameInCorner">
     <p> System rozmieszczania studentów na kolokwiach </p>
 </div>
 
-<form class="box" action="login.html" method="post">
+<form class="box" action="login.html" th:action="@{/login}"  method="post">
     <h2>Login</h2>
-    <input type="text" name="" type="hidden"  placeholder="Username" required>
-    <input type="password" name="" type="hidden"  placeholder="Password" required>
+    <input type="text" name="username" id="username" type="hidden"  placeholder="Username" required>
+    <input type="password" name="password" id="password" type="hidden"  placeholder="Password" required>
     <input type="submit" name="Submit" type="hidden"  value="Submit" placeholder="Submit">
     <a href="register.html">Register account</a>
 
 </form>
-
 
 
 </body>
