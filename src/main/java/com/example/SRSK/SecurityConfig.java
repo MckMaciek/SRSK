@@ -14,7 +14,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /*@Bean
+    @Bean
     public UserDetailsService userDetailsService(){
 
         UserDetails userDetails = User.withDefaultPasswordEncoder()
@@ -24,15 +24,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .build();
 
         return new InMemoryUserDetailsManager(userDetails);
-    }*/
-
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user").password("{noop}password").roles("USER") .and()
-                .withUser("admin").password("{noop}password").roles("ADMIN");
     }
-
 
 
     @Override
@@ -43,9 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/index.html")
                 .hasRole("USER")
                 .and().formLogin().loginPage("/login.html")
-                .usernameParameter("text").passwordParameter("password")
+                .usernameParameter("username").passwordParameter("password")
                 .defaultSuccessUrl("/index.html", true)
-                .and().logout().permitAll();
+                .and().logout().permitAll().and()
+                        .authorizeRequests().antMatchers("/h2console/**").permitAll();
+
+                http.authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/h2console/**").permitAll();
+                http.csrf().disable();
+                http.headers().frameOptions().disable();
 
     }
 
