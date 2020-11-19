@@ -30,9 +30,9 @@ public class UserRepositoryTest {
     @EventListener(ApplicationReadyEvent.class)
     public void testCreateUser(){
 
-        User user3 = new User("AAAA","BBBB" );
+        //User user3 = new User("AAAA","BBBB" );
 
-        repo.save(user3);
+        //repo.save(user3);
         //User existing = entityManager.find(User.class,saved.getId());
 
     }

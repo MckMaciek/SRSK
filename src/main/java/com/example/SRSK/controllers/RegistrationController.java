@@ -48,11 +48,12 @@ public class RegistrationController {
         model.addAttribute("email", user.getEmail());
         model.addAttribute("password", user.getPassword());
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-        String encodedPassword = encoder.encode(user.getPassword());
+        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+        //String encodedPassword = encoder.encode(user.getPassword());
 
         User userToAdd = new User(model.getAttribute("email").toString(),
-                encodedPassword);
+                model.getAttribute("password").toString());
+
 
         repo.save(userToAdd);
 
