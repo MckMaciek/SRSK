@@ -1,34 +1,32 @@
 package com.example.SRSK;
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+//@XmlRootElement
 @Entity
+@Table(name="registration_TB")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
 
     public User(){
     }
 
-    public User(Long id, String email, String password) {
-        this.id = id;
+
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getEmail() {
@@ -45,5 +43,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

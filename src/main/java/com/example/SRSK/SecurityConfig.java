@@ -30,21 +30,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+
                 http
                 .authorizeRequests()
-                .antMatchers("/", "/index.html")
+                .antMatchers("/", "/index")
                 .hasRole("USER")
-                .and().formLogin().loginPage("/login.html")
+                .and().formLogin().loginPage("/login")
                 .usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/index.html", true)
+                .defaultSuccessUrl("/index", true)
                 .and().logout().permitAll().and()
-                        .authorizeRequests().antMatchers("/h2console/**").permitAll();
+                        .authorizeRequests().antMatchers("/h2console/**", "/register_success", "/register").permitAll();
 
                 http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/h2console/**").permitAll();
+                .antMatchers("/h2console/**", "/register_success", "/register").permitAll();
                 http.csrf().disable();
                 http.headers().frameOptions().disable();
+
+
 
     }
 
