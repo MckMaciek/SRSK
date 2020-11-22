@@ -1,9 +1,12 @@
 package com.example.SRSK.controllers;
 
+import com.example.SRSK.SecurityConfig;
 import com.example.SRSK.User;
 import com.example.SRSK.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -21,6 +24,7 @@ public class LoginControler {
     @Autowired
     private UserRepo repo;
 
+
     @RequestMapping(value = "/getUser", method = RequestMethod.POST)
     public ModelAndView addStudent(@ModelAttribute("SpringWeb") User user, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
@@ -34,17 +38,34 @@ public class LoginControler {
         System.out.println(model.getAttribute("email"));
         System.out.println(model.getAttribute("password"));
 
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        String hashedPassword = encoder.encode(user.getPassword());
+
+
         User new_user = new User(model.getAttribute("email").toString(),
-                model.getAttribute("password").toString());
+                hashedPassword);
 
+        List<User> licenses = repo.findAll();
 
-        List<User> licenses=repo.findAll();
-        for(Object lic : licenses){
-            System.out.println(lic);
+        for (User lic : licenses) {
+            System.out.println(lic); // diagnostic
+            if (repo.existsByEmail(user.getEmail())) {
+
+                if (encoder.matches(user.getPassword(), lic.getPassword())) {
+
+                    ModelAndView mav = new ModelAndView("index.html");
+                    return mav;
+                }
+            }
         }
 
+        ModelAndView mav = new ModelAndView("login.html");
+        return mav;
 
+        /*
         if (repo.exists(Example.of(new_user))){
+
+
             System.out.println("Zalogowano");
             ModelAndView mav = new ModelAndView("index.html");
             return mav;
@@ -53,7 +74,7 @@ public class LoginControler {
             System.out.println("Nie istnieje");
             ModelAndView mav = new ModelAndView("login.html");
             return mav;
-        }
+        }*/
     }
 
 

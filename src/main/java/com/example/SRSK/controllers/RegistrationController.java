@@ -1,5 +1,6 @@
 package com.example.SRSK.controllers;
 
+import com.example.SRSK.SecurityConfig;
 import com.example.SRSK.User;
 import com.example.SRSK.UserRepo;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.ui.Model;
@@ -27,7 +29,6 @@ public class RegistrationController {
 
     @Autowired
     private UserRepo repo;
-
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView registerPage(){
@@ -48,16 +49,24 @@ public class RegistrationController {
         model.addAttribute("email", user.getEmail());
         model.addAttribute("password", user.getPassword());
 
-        //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-        //String encodedPassword = encoder.encode(user.getPassword());
+        if (repo.existsByEmail(user.getEmail())) {
+            System.out.println("Email duplicate in DB");
+            ModelAndView mav = new ModelAndView("register.html");
+            return mav;
+        }
 
+        PasswordEncoder encoder =  new BCryptPasswordEncoder();
+        String hashedPassword = encoder.encode(user.getPassword());
+
+
+        //String hashedPassword = SecurityConfig.passwordEncoder(user.getPassword());
         User userToAdd = new User(model.getAttribute("email").toString(),
-                model.getAttribute("password").toString());
+                hashedPassword);
 
 
         repo.save(userToAdd);
 
-        ModelAndView mav = new ModelAndView("login.html");
+        ModelAndView mav = new ModelAndView("registration_success.html");
         return mav;
     }
 
