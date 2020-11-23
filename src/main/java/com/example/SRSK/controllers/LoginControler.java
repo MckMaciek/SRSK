@@ -25,7 +25,7 @@ public class LoginControler {
     private UserRepo repo;
 
 
-    @RequestMapping(value = "/getUser", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView addStudent(@ModelAttribute("SpringWeb") User user, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             System.out.println("ERROR"); // do zmiany
@@ -33,33 +33,32 @@ public class LoginControler {
 
         model.addAttribute("email", user.getEmail());
         model.addAttribute("password", user.getPassword());
+        model.addAttribute("role", "ROLE_ADMIN");
 
         System.out.println("LOGOWANIE");
         System.out.println(model.getAttribute("email"));
         System.out.println(model.getAttribute("password"));
+        System.out.println(model.getAttribute("role"));
+
 
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         String hashedPassword = encoder.encode(user.getPassword());
 
-
-        User new_user = new User(model.getAttribute("email").toString(),
-                hashedPassword);
-
         List<User> licenses = repo.findAll();
-
+        System.out.println("[DIAGNOZA] /getUser");
         for (User lic : licenses) {
-            System.out.println(lic); // diagnostic
             if (repo.existsByEmail(user.getEmail())) {
-
+                    System.out.println("Mail w db");
                 if (encoder.matches(user.getPassword(), lic.getPassword())) {
-
-                    ModelAndView mav = new ModelAndView("index.html");
+                    System.out.println("Haslo to");
+                    System.out.println("/getUser Zalogowano");
+                    ModelAndView mav = new ModelAndView("redirect:" + "/main");
                     return mav;
                 }
             }
         }
 
-        ModelAndView mav = new ModelAndView("login.html");
+        ModelAndView mav = new ModelAndView("redirect:" + "/login");
         return mav;
 
         /*

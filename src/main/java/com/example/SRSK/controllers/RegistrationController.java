@@ -38,16 +38,17 @@ public class RegistrationController {
 
 
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public ModelAndView addStudent(@ModelAttribute("SpringWeb") User user, BindingResult result, ModelMap model){
+    public ModelAndView addStudent(@ModelAttribute User user, BindingResult result, ModelMap model){
         if (result.hasErrors()) {
             System.out.println("ERROR"); // do zmiany
         }
 
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("USER"));
+        //List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        //authorities.add(new SimpleGrantedAuthority("USER"));
 
         model.addAttribute("email", user.getEmail());
         model.addAttribute("password", user.getPassword());
+        model.addAttribute("username", user.getUsername());
 
         if (repo.existsByEmail(user.getEmail())) {
             System.out.println("Email duplicate in DB");
@@ -58,11 +59,10 @@ public class RegistrationController {
         PasswordEncoder encoder =  new BCryptPasswordEncoder();
         String hashedPassword = encoder.encode(user.getPassword());
 
-
-        //String hashedPassword = SecurityConfig.passwordEncoder(user.getPassword());
         User userToAdd = new User(model.getAttribute("email").toString(),
-                hashedPassword);
+                hashedPassword, user.getUsername(),"ROLE_ADMIN");
 
+        userToAdd.setUsername(user.getUsername());
 
         repo.save(userToAdd);
 
