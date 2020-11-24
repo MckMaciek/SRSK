@@ -1,5 +1,6 @@
-package com.example.SRSK;
+package com.example.SRSK.services;
 
+import com.example.SRSK.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;

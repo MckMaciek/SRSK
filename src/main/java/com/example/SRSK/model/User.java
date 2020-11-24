@@ -1,4 +1,4 @@
-package com.example.SRSK;
+package com.example.SRSK.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +25,12 @@ public class User implements UserDetails {
     private String username;
     @Column(name = "role")
     private String role;
+    @Column(name = "isEnabled")
+    private boolean isEnabled;
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
 
     public User(){
     }
@@ -89,7 +95,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 
     public void setPassword(String password) {

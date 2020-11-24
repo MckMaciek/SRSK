@@ -1,15 +1,10 @@
 package com.example.SRSK;
 
-import org.junit.Test;
+import com.example.SRSK.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import org.springframework.test.annotation.Rollback;
 
 //@EnableAutoConfiguration
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

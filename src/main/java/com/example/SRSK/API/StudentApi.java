@@ -1,5 +1,6 @@
-package com.example.SRSK;
+package com.example.SRSK.API;
 
+import com.example.SRSK.model.Student;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

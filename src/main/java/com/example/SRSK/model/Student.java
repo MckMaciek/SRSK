@@ -1,4 +1,4 @@
-package com.example.SRSK;
+package com.example.SRSK.model;
 
 public class Student {
 

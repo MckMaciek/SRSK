@@ -1,10 +1,8 @@
 package com.example.SRSK.controllers;
 
-import com.example.SRSK.SecurityConfig;
-import com.example.SRSK.User;
-import com.example.SRSK.UserRepo;
+import com.example.SRSK.model.User;
+import com.example.SRSK.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
