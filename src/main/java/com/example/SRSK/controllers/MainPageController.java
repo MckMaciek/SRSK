@@ -19,7 +19,13 @@ public class MainPageController {
     public ModelAndView index(Principal principal, User user, Model model) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("[DIAGNOZA] /Main");
+        int startingCharExcludingEmail = 7;
+        String[] authParsed = auth.toString().split(",");
+        String email = authParsed[1].substring(startingCharExcludingEmail).replace("'","");
+
+        model.addAttribute("username",principal.getName());
+        model.addAttribute("email",email);
+
         ModelAndView mav = new ModelAndView("index.html");
         return mav;
     }

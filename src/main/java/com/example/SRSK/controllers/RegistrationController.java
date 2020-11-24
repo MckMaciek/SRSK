@@ -60,7 +60,7 @@ public class RegistrationController {
         String hashedPassword = encoder.encode(user.getPassword());
 
         User userToAdd = new User(model.getAttribute("email").toString(),
-                hashedPassword, user.getUsername(),"ROLE_ADMIN");
+                hashedPassword, user.getUsername(),"ROLE_USER");
 
         userToAdd.setUsername(user.getUsername());
 
