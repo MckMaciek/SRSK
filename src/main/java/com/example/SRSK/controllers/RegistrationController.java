@@ -77,12 +77,12 @@ public class RegistrationController {
 
     @RequestMapping(value = "/token")
     public ModelAndView token(@RequestParam String value){
-        Token newValue =   tokenrepo.findByValue(value);
+        Token newValue = tokenrepo.findByValue(value);
         User user1 = newValue.getUser();
         user1.setEnabled(true);
 
         repo.save(user1);
-        ModelAndView mav = new ModelAndView("registration_success.html");
+        ModelAndView mav = new ModelAndView("confirmed_email.html");
         return mav;
     }
 
