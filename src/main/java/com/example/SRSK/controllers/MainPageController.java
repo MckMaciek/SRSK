@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -45,4 +46,21 @@ public class MainPageController {
         ModelAndView mav = new ModelAndView("index.html");
         return mav;
     }
+
+
+    @RequestMapping(value = "/about", method= RequestMethod.GET)
+    public ModelAndView about() {
+
+        ModelAndView mav = new ModelAndView("about.html");
+        return mav;
+    }
+
+    @RequestMapping(value = "/getCode", method = RequestMethod.GET)
+    public ModelAndView getCode(){
+
+        ModelAndView mav = new ModelAndView("getCode.html");
+        return mav;
+    }
+
+
 }

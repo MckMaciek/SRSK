@@ -20,8 +20,7 @@
 
 <form class="box">
     <!--<h2> Confirmation email has been sent!</h2>-->
-    <p> Great to see you, <span th:text="${username}"/>! </p>
-    <p> Your email: <span th:text="${email}"/> </p>
+    Strona stworzona przez studentów - Macieja Musiała i Mateusza Filipa
 
 </form>
 
@@ -35,7 +34,7 @@
         <input name="index" type="button"  value="Index"  onclick="window.location='main'" placeholder="Submit">
     </form>
 
-    <form th:action="@{/getCode}" method="GET">
+    <form>
         <input name="getCode" type="button"  value="GetCode"  onclick="window.location='getCode'" placeholder="Submit">
     </form>
 

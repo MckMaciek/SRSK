@@ -1,0 +1,43 @@
+button{
+	color: black;
+	font-size: 24px;
+	background-color: lightblue;
+	line-height: 50px;
+	padding: 14px 40px;
+	border: none;
+	display: inline-block;
+	width:20%;
+	height:20%;
+	outline:none;
+}
+
+body{
+	background-color : lightblue;
+}
+
+.vl {
+  border-left: 1px solid black;
+  height: 100%;
+  position: fixed;
+  left: 21%;
+  top: 0;
+}
+
+button:hover{
+	background-color: yellow;
+}
+
+h1{
+	margin-top: -20%;
+	text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+p{
+    color: green;
+    text-align: center;
+    font-size: 30px;
+}

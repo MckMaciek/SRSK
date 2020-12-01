@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="Styleregistration_success.css">
+    <link rel="stylesheet" href="styleGetCode.css">
     <title>Home page</title>
 </head>
 
@@ -18,11 +18,9 @@
     <p> System rozmieszczania studentów na kolokwiach </p>
 </div>
 
-<form class="box">
-    <!--<h2> Confirmation email has been sent!</h2>-->
-    <p> Great to see you, <span th:text="${username}"/>! </p>
-    <p> Your email: <span th:text="${email}"/> </p>
-
+<form class="box" th:action="@{/getImage}" method="POST" modelAttribute="ImageDB">
+    <input type="text" name="code" id="code" path="code"  placeholder="ImageCode" required>
+    <input name="Submit" type="submit"  value="Submit"  placeholder="Submit">
 </form>
 
 <div class="menubox">
