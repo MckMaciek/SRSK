@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sf="http://www.w3.org/1999/xhtml"
-      xmlns:form="http://www.w3.org/1999/xhtml" lang="en">
+      xmlns:form="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 
 
 
@@ -18,10 +18,17 @@
     <p> System rozmieszczania studentów na kolokwiach </p>
 </div>
 
+<!--<img th:src="@{/getImage}" modelAttribute="ImageDB" method="GET" name="image" alt="" width="500" height="600"> -->
+
 <form class="box" th:action="@{/getImage}" method="POST" modelAttribute="ImageDB">
     <input type="text" name="code" id="code" path="code"  placeholder="ImageCode" required>
     <input name="Submit" type="submit"  value="Submit"  placeholder="Submit">
+    <img  th:src="${image} == null ? _ : @{'data:image/png;base64,'+${image}}" modelAttribute="ImageDB"  name="image" alt="" width="500" height="580">
 </form>
+
+<!--<form class="box2" th:action="@{/displayImage}" method="GET" modelAttribute="ImageDB"> -->
+
+
 
 <div class="menubox">
 
@@ -39,6 +46,14 @@
 
     <form action="/about" method="GET">
         <input name="about" type="button"  onclick="window.location='about'" value="About"  placeholder="Submit">
+    </form>
+
+    <form th:action="@{/changePassword}" method="GET">
+        <input name="changePassword" type="button" onclick="window.location='changePassword'"  value="changePassword"  placeholder="Submit">
+    </form>
+
+    <form sec:authorize="hasRole('ROLE_ADMIN')" action="/viewStudents" method="GET">
+        <input name="viewStudents" type="button"  onclick="window.location='viewStudents'" value="viewStudents"  placeholder="Submit">
     </form>
 
 </div>

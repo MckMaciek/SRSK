@@ -11,7 +11,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+
 
 @Configuration
 @EnableWebSecurity
@@ -36,25 +41,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomLogoutHandler();
     }
 
+    @Bean
+    public HttpFirewall defaultHttpFirewall() {
+        return new DefaultHttpFirewall();
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-                /*
-                http
-                .authorizeRequests()
-                .antMatchers("/", "/index", "/main")
-                .hasRole("USER")
-                .and().formLogin().loginPage("/login")
-                .usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/main", true)
-                .and().logout().permitAll().and()
-                        .authorizeRequests().antMatchers("/h2console/**", "/register_success", "/register").permitAll();
 
-                 */
 
                 http.authorizeRequests()
-                        .antMatchers("/","/main","/index","/about","/getCode","/getImage").hasAuthority("ROLE_USER")
+                        .antMatchers("/","/main","/index","/about","/getCode","/getImage", "/changePassword").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                        .antMatchers("/viewStudents").hasAuthority("ROLE_ADMIN")
                         .and()
                         .formLogin().loginPage("/login")
                         .usernameParameter("email").passwordParameter("password")
@@ -67,22 +67,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .addLogoutHandler(customLogoutHandler())
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 
-                //http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-
-
-                /*
-                http.authorizeRequests()
-                        .antMatchers("/main","/").hasAuthority("ROLE_USER")
-                        .and()
-                        .formLogin().loginPage("/login")
-                        .defaultSuccessUrl("/main", true);
-*/
-                /*
-                http.authorizeRequests()
-                        .and()
-                        .formLogin().loginPage("/login")
-                        .defaultSuccessUrl("/main", true);
-*/
 
 
                 http.authorizeRequests()

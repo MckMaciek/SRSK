@@ -25,10 +25,7 @@ public class UserRepositoryTest {
     @EventListener(ApplicationReadyEvent.class)
     public void testCreateUser(){
 
-        //User user3 = new User("AAAA","BBBB","nie","ROLE_ADMIN" );
-        //repo.save(user3);
-        //repo.save(user3);
-        //User existing = entityManager.find(User.class,saved.getId());
+
 
     }
 

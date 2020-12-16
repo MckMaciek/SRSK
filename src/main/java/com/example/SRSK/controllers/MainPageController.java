@@ -36,7 +36,7 @@ public class MainPageController {
     public ModelAndView index(Principal principal, User user, Model model) {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        int startingCharExcludingEmail = 7;
+        final int startingCharExcludingEmail = 7;
         String[] authParsed = auth.toString().split(",");
         String email = authParsed[1].substring(startingCharExcludingEmail).replace("'","");
 
@@ -59,6 +59,7 @@ public class MainPageController {
     public ModelAndView getCode(){
 
         ModelAndView mav = new ModelAndView("getCode.html");
+        mav.addObject("image_id", 1);
         return mav;
     }
 

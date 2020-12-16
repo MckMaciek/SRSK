@@ -42,6 +42,10 @@ public class LoginControler {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         String hashedPassword = encoder.encode(user.getPassword());
 
+        // REMOVE SPACES FROM EMAIL
+        user.setEmail(user.getEmail().replace(" ", ""));
+        //
+
         List<User> licenses = repo.findAll();
         System.out.println("[DIAGNOZA] /getUser");
         for (User lic : licenses) {
@@ -59,19 +63,6 @@ public class LoginControler {
         ModelAndView mav = new ModelAndView("redirect:" + "/login");
         return mav;
 
-        /*
-        if (repo.exists(Example.of(new_user))){
-
-
-            System.out.println("Zalogowano");
-            ModelAndView mav = new ModelAndView("index.html");
-            return mav;
-        }
-        else {
-            System.out.println("Nie istnieje");
-            ModelAndView mav = new ModelAndView("login.html");
-            return mav;
-        }*/
     }
 
 

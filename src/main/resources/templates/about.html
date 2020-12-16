@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sf="http://www.w3.org/1999/xhtml"
-      xmlns:form="http://www.w3.org/1999/xhtml" lang="en">
+      xmlns:form="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 
 
 
@@ -40,6 +40,14 @@
 
     <form action="/about" method="GET">
         <input name="about" type="button"  onclick="window.location='about'" value="About"  placeholder="Submit">
+    </form>
+
+    <form th:action="@{/changePassword}" method="GET">
+        <input name="changePassword" type="button" onclick="window.location='changePassword'"  value="changePassword"  placeholder="Submit">
+    </form>
+
+    <form sec:authorize="hasRole('ROLE_ADMIN')" action="/viewStudents" method="GET">
+        <input name="viewStudents" type="button"  onclick="window.location='viewStudents'" value="viewStudents"  placeholder="Submit">
     </form>
 
 </div>

@@ -9,7 +9,12 @@ body{
 	overflow: hidden;
 }
 
+.box img{
 
+    display:block;
+    float: left;
+
+}
 
 .box{
 	width: 80vw;
@@ -103,8 +108,67 @@ body{
 
 }
 
+.menubox input[name="viewStudents"]{
+
+	border: 0;
+	margin: 1px;
+	background: #F0FFFF;
+	display: block;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	border-top: none;
+	border-right:2px solid #40E0D0;
+	border-left: 2px solid #40E0D0;
+	border-bottom: 2px solid #40E0D0;
+
+	width: 200px;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+
+}
 
 .menubox input[name="about"]{
+
+	border: 0;
+	margin: 1px;
+	background: #F0FFFF;
+	display: block;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	border-top: none;
+	border-right:2px solid #40E0D0;
+	border-left: 2px solid #40E0D0;
+	border-bottom: 2px solid #40E0D0;
+
+	width: 200px;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+
+}
+
+.menubox input[name="changePassword"]{
+
+	border: 0;
+	margin: 1px;
+	background: #F0FFFF;
+	display: block;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	border-top: none;
+	border-right:2px solid #40E0D0;
+	border-left: 2px solid #40E0D0;
+	border-bottom: 2px solid #40E0D0;
+
+	width: 200px;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+
+}
+
+.menubox input[name="changePassword"]{
 
 	border: 0;
 	margin: 1px;
@@ -144,6 +208,11 @@ body{
 
 }
 
+.menubox input[name="changePassword"]:hover{
+
+    background: #40E0D0;
+}
+
 .menubox input[name="index"]:hover{
 
     background: #40E0D0;
@@ -162,9 +231,12 @@ body{
 }
 
 
-
-
 .box input[type="button"]:hover{
 		background: #40E0D0;
 
+}
+
+.menubox input[name="viewStudents"]:hover{
+
+    background: #40E0D0;
 }
