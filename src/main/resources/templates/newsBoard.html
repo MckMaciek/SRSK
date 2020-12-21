@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+</head>
+<body>
+<p> Tutaj dodawane są posty</p>
+<div class="add-post-container">
+    <!--sec:authorize="hasRole('ROLE_ADMIN')" -->
+<form th:action="@{/userPostsAdd}"  method="POST" th:object="${addNewPostModel}">
+    <p>header <input type="text" th:field="*{header}"></p>
+    <p>post_desc<input type="text" th:field="*{postDescription}"></p>
+    <p> <input type="submit" value="Add new post"></p>
+</form>
+</div>
+
+<div class="db-output-posts">
+    <tr th:each="post: ${addedPosts}">
+        <td th:text="${post.printOP()}"/>
+        <br>
+        [TOPIC]-
+        <td th:text="${post.getHeader()}"/>
+        <br>
+        <td th:text="${post.getPostDescription()}"/>
+        <br>
+        [--------------------------------------------]
+        posted on <td th:text="${post.getDate()}"/>
+        <br>
+        <br>
+        <br>
+    </tr>
+</div>
+
+
+</body>
+</html>

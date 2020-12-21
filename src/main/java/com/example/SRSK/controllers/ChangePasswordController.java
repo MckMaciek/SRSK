@@ -1,10 +1,7 @@
 package com.example.SRSK.controllers;
 
-import com.example.SRSK.model.Token;
 import com.example.SRSK.model.User;
-import com.example.SRSK.repositories.TokenRepo;
 import com.example.SRSK.repositories.UserRepo;
-import com.example.SRSK.services.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,18 +13,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.util.UUID;
 
 @Controller
 public class ChangePasswordController {
 
     @Autowired
     private UserRepo repo;
-
 
 
     @RequestMapping(value = "/changePassword", method = RequestMethod.GET)

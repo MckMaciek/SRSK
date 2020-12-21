@@ -7,6 +7,7 @@ import com.example.SRSK.repositories.StudentRepo;
 import com.example.SRSK.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 @RestController
 public class GetStudentsTableController {
 
+
     @Autowired
     private StudentRepo repo;
 
@@ -27,10 +29,23 @@ public class GetStudentsTableController {
         this.repo = repo;
     }
 
-    @RequestMapping(value = "/viewStudents", method = RequestMethod.GET)
-    public ArrayList<Student> getStudents() {
+    @RequestMapping(value="/addStudentFromSite", method = RequestMethod.POST)
+    public ModelAndView postStudent(@ModelAttribute Student student, Model model){
 
-        return repo.findAll();
+        Student latestStudent = repo.findTopByOrderByIdDesc();
+        student.setId(latestStudent.getId() + 1);
+        repo.save(student);
+
+      return new ModelAndView("redirect:/viewStudents");
+    }
+
+    @RequestMapping(value = "/viewStudents", method = RequestMethod.GET)
+    public ModelAndView getStudents(Model model) {
+
+        model.addAttribute("newStudent", new Student());
+        model.addAttribute("students", repo.findAll());
+
+        return new ModelAndView("studentsView.html");
     }
 
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styleStudentView.css">
+</head>
+<body>
+
+
+<div class="flex-container">
+<div class="db-input">
+<form th:action="@{/addStudentFromSite}" method="POST"  th:object="${newStudent}">
+    <p>FIRST NAME <input type="text" th:field="*{fname}"></p>
+    <p>LAST NAME <input type="text" th:field="*{lname}"></p>
+    <p>INDEX <input type="text" th:field="*{index}"></p>
+    <p>GROUP ID <input type="text" th:field="*{group_id}"></p>
+    <p>SUB_GROUP <input type="text" th:field="*{sub_group}"></p>
+    <p> <input type="submit" value="Add new student"></p>
+</form>
+</div>
+
+
+<div class="db-output">
+    <tr th:each="student: ${students}">
+        <td th:text="${student.getId()}"/>
+        <td th:text="${student.getFname()}"/>
+        <td th:text="${student.getLname()}"/>
+        <td th:text="${student.getIndex()}"/>
+        <td th:text="${student.getGroup_id()}"/>
+        <td th:text="${student.getSub_group()}"/> <br>
+    </tr>
+</div>
+</div>
+
+</body>
+</html>

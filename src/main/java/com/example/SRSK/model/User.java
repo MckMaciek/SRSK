@@ -102,6 +102,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    /*
     @Override
     public String toString() {
         return "User{" +
@@ -110,6 +111,19 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", username='" + username + '\'' +
                 ", role='" + role + '\'' +
+                '}';
+    }*/
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", role='" + role + '\'' +
+                ", isEnabled=" + isEnabled +
                 '}';
     }
 }

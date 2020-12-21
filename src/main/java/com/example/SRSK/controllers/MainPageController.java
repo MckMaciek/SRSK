@@ -1,6 +1,8 @@
 package com.example.SRSK.controllers;
 
 import com.example.SRSK.model.User;
+import com.example.SRSK.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,8 @@ public class MainPageController {
         return mav;
     }
 
-
+    @Autowired
+    UserRepo userRepo;
 
     @RequestMapping(value = "/main", method= RequestMethod.GET)
     public ModelAndView index(Principal principal, User user, Model model) {
@@ -40,8 +43,12 @@ public class MainPageController {
         String[] authParsed = auth.toString().split(",");
         String email = authParsed[1].substring(startingCharExcludingEmail).replace("'","");
 
+
         model.addAttribute("username",principal.getName());
         model.addAttribute("email",email);
+
+        User testowy = userRepo.findByEmail(email);
+        System.out.println(testowy);
 
         ModelAndView mav = new ModelAndView("index.html");
         return mav;
