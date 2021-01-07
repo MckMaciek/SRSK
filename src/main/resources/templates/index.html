@@ -7,60 +7,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="Styleregistration_success.css">
+    <link rel="stylesheet" href="main_page_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Home page</title>
 </head>
 
 <body>
-<!-- Sidebar/menu -->
 
-<div class="nameInCorner">
-    <p> System rozmieszczania studentów na kolokwiach </p>
+<div class="nameInCorner-container">
+    <div class="nameInCorner-container-tile">
+        <div class="nameInCorner-container-tile-text">
+            <p> System rozmieszczania studentów na kolokwiach </p>
+        </div>
+    </div>
 </div>
 
-<form class="box">
-    <!--<h2> Confirmation email has been sent!</h2>-->
-    <p> Great to see you, <span th:text="${username}"/>! </p>
-    <p> Your email: <span th:text="${email}"/> </p>
 
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-        Hello admin!
+
+
+<div class="main-board-container-with-side-menu">
+    <div id="main-board-container-tile" class="main-board-container-tile">
+        <div class="main-board-container-tile-text">
+            <h2> NEWS BOARD</h2>
+
+            <p> Great to see you, <span th:text="${username}"/>! </p>
+            <p> Your email: <span th:text="${email}"/> </p>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <p> [ADMIN ACCOUNT] </p>
+            </div>
+        </div>
     </div>
 
-</form>
+    <div class="side-menu-container-with-switch-button">
 
-<div class="menubox">
-
-    <form th:action="@{/logout}" method="post">
-        <a  th:href="@{/logout}"><input name="logout" type="button"  value="Logout"  onclick="window.location='login'" placeholder="Submit"></a>
-    </form>
-
-    <form>
-        <input name="index" type="button"  value="Index"  onclick="window.location='main'" placeholder="Submit">
-    </form>
-
-    <form th:action="@{/getCode}" method="GET">
-        <input name="getCode" type="button"  value="GetCode"  onclick="window.location='getCode'" placeholder="Submit">
-    </form>
-
-    <form action="/about" method="GET">
-        <input name="about" type="button"  onclick="window.location='about'" value="About"  placeholder="Submit">
-    </form>
-
-    <form th:action="@{/changePassword}" method="GET">
-        <input name="changePassword" type="button" onclick="window.location='changePassword'"  value="changePassword"  placeholder="Submit">
-    </form>
-
-    <form sec:authorize="hasRole('ROLE_ADMIN')" action="/viewStudents" method="GET">
-        <input name="viewStudents" type="button"  onclick="window.location='viewStudents'" value="viewStudents"  placeholder="Submit">
-    </form>
+        <div id ="switch-to-hide-and-show" class="switch-to-hide-and-show">
+            <form>
+                <i id="switch-to-hide-and-show-button" class="fa fa-bars" onclick="hideAndShow()"></i>
+                <!--<input id="switch-to-hide-and-show-button" name="index" type="button"  value="Index"  onclick="hideAndShow()" placeholder="Submit"> -->
+            </form>
+        </div>
 
 
+        <div id="side-menu-container" class="side-menu-container">
+            <div class="side-menu-container-logout">
+                <form th:action="@{/logout}" method="post">
+                    <a  th:href="@{/logout}"><input name="logout" type="button"  value="Logout"  onclick="window.location='login'" placeholder="Submit"></a>
+                </form>
+            </div>
 
+            <div class="side-menu-container-index">
+                <form>
+                    <input name="index" type="button"  value="Home"  onclick="window.location='main'" placeholder="Submit">
+                </form>
+            </div>
 
+            <div class="side-menu-container-getCode">
+                <form th:action="@{/getCode}" method="GET">
+                    <input name="getCode" type="button"  value="Exam ID"  onclick="window.location='getCode'" placeholder="Submit">
+                </form>
+            </div>
+
+            <div class="side-menu-container-about">
+                <form action="/about" method="GET">
+                    <input name="about" type="button"  onclick="window.location='about'" value="About"  placeholder="Submit">
+                </form>
+
+                <div class="side-menu-container-changePassword">
+                    <form th:action="@{/changePassword}" method="GET">
+                        <input name="changePassword" type="button" onclick="window.location='changePassword'"  value="Change Password"  placeholder="Submit">
+                    </form>
+                </div>
+
+                <div class="side-menu-container-viewStudents">
+                    <form sec:authorize="hasRole('ROLE_ADMIN')" action="/viewStudents" method="GET">
+                        <input name="viewStudents" type="button"  onclick="window.location='viewStudents'" value="View Students"  placeholder="Submit">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+function hideAndShow(){
+
+	$("#side-menu-container").animate({ height: 'toggle', opacity: 'toggle' }, 'slow');
+}
+function hideAndShowVerySlow(){
+
+	$("#side-menu-container").animate({ height: 'toggle', opacity: 'toggle' }, 800);
+}
+
+
+window.onload = function(){
+
+	$("#side-menu-container").click(hideAndShowVerySlow());
+
+}
+</script>
 
 </body>
 </html>

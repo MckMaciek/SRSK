@@ -2,7 +2,9 @@ package com.example.SRSK.model;
 
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
@@ -15,12 +17,17 @@ public class UserPosts {
 
     @OneToOne
     private User user;
+
+    @OneToOne
+    private UserComments userComments;
+
     @Column(name = "post_desc")
     private String postDescription;
     @Column(name = "post_header")
     private String header;
     @Column(name = "date")
     private String date;
+
 
     public UserPosts(User user, String postDescription, String header, String date) {
         this.user = user;
@@ -72,6 +79,13 @@ public class UserPosts {
         this.date = date;
     }
 
+    public UserComments getUserComments() {
+        return userComments;
+    }
+
+    public void setUserComments(UserComments userComments) {
+        this.userComments = userComments;
+    }
 
     public String printOP() {
         return "[EMAIL] " +

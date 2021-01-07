@@ -1,0 +1,219 @@
+body{
+	margin: 0;
+	padding: 0;
+	font-family: Sanf-Serif;
+	background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 23%, rgba(0,212,255,1) 100%);
+	background-size: cover;
+	height: 100%;
+
+}
+
+.nameInCorner-container{
+
+	display: flex;
+	justify-content: center;
+	margin: 0 0 10px 10px;
+
+}
+
+.nameInCorner-container-tile-text p{
+
+	font-size: 20px;
+	text-align: center;
+    color: white;
+    opacity: 1;
+}
+
+
+.main-board-container-with-side-menu{
+
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	align-items: center;
+
+}
+
+
+
+.main-board-container-tile{
+
+
+	height: 580px;
+	order: 2;
+	flex-basis: 80%;
+	margin: 1px 15px 5px 5px;
+	padding: 40px;
+	background: #F0FFFF;
+	text-align: center;
+	border-radius: 40px 40px 40px 40px;
+	transition: opacity 3s linear;
+
+
+}
+
+.main-board-container-tile-image{
+
+    display: flex;
+    background: red;
+
+}
+
+
+
+.side-menu-container{
+
+	height: 400px;
+	width: 100%;
+	order: 1;
+	background: #F0FFFF;
+	border-radius: 24px;
+
+}
+
+.side-menu-container-with-switch-button{
+
+	display: flex;
+	flex-flow: column;
+	width: 20%;
+	height: 400px;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+
+
+.switch-to-hide-and-show{
+
+	font-size: 48px;
+	color: white;
+	margin-bottom: 20px;
+}
+
+.side-menu-container input[name="logout"]{
+
+	background: #F0FFFF;
+	display: block;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+	border-radius: 24px 24px 0px 0px;
+
+}
+
+.side-menu-container input[name="getCode"]{
+
+
+	background: #F0FFFF;
+	display: block;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	border-top: none;
+
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+
+}
+
+
+.side-menu-container input[name="about"]{
+
+
+	background: #F0FFFF;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	border-top: none;
+
+
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+
+}
+
+.side-menu-container input[name="viewStudents"]{
+
+	background: #F0FFFF;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	border-top: none;
+
+
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+
+}
+
+
+.side-menu-container input[name="index"]{
+
+	background: #F0FFFF;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	border-top: none;
+
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+
+}
+
+.side-menu-container input[name="changePassword"]{
+
+
+	background: #F0FFFF;
+	text-align: center;
+	border: 2px solid #40E0D0;
+	border-top: none;
+	border-right:2px solid #40E0D0;
+	border-left: 2px solid #40E0D0;
+	border-bottom: 2px solid #40E0D0;
+
+	width: 100%;
+	height: 50px;
+	cursor: pointer;
+	outline: none;
+
+}
+
+.side-menu-container input[name="changePassword"]:hover{
+
+    background: #40E0D0;
+}
+
+.side-menu-container input[name="index"]:hover{
+
+    background: #40E0D0;
+}
+.side-menu-container input[name="about"]:hover{
+
+    background: #40E0D0;
+}
+.side-menu-container input[name="getCode"]:hover{
+
+    background: #40E0D0;
+}
+.side-menu-container input[name="logout"]:hover{
+
+    background: #40E0D0;
+}
+.side-menu-container input[name="viewStudents"]:hover{
+
+    background: #40E0D0;
+}
+
+
+
+.box input[type="button"]:hover{
+		background: #40E0D0;
+
+}

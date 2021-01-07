@@ -3,32 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Board</title>
+    <link rel="stylesheet" href="styleNewsBoard.css">
 </head>
 <body>
 <p> Tutaj dodawane są posty</p>
 <div class="add-post-container">
     <!--sec:authorize="hasRole('ROLE_ADMIN')" -->
 <form th:action="@{/userPostsAdd}"  method="POST" th:object="${addNewPostModel}">
-    <p>header <input type="text" th:field="*{header}"></p>
-    <p>post_desc<input type="text" th:field="*{postDescription}"></p>
+    <p><input class="post_desc" type="text" th:field="*{header}"></p>
+    <textarea class="message" rows="10" cols="30" th:field="*{postDescription}"> </textarea>
+    <!--<p>post_desc<input type="text" th:field="*{postDescription}"></p> -->
     <p> <input type="submit" value="Add new post"></p>
 </form>
 </div>
 
 <div class="db-output-posts">
+    <br>
     <tr th:each="post: ${addedPosts}">
+        [----------------------------------------------------------------------------------------------]
+        <br>
         <td th:text="${post.printOP()}"/>
         <br>
         [TOPIC]-
         <td th:text="${post.getHeader()}"/>
         <br>
+
+        <div class="post-desc">
         <td th:text="${post.getPostDescription()}"/>
         <br>
+        </div>
         [--------------------------------------------]
         posted on <td th:text="${post.getDate()}"/>
         <br>
+        Comments
         <br>
+        <td th:text="${post.getUserComments()}"/>
         <br>
+        <form th:action="@{/userCommentAdd}"  method="POST" th:object="${addNewComment}">
+            <p><input class="post_desc" type="text" th:field="*{header}"></p>
+            <textarea class="message" rows="10" cols="30" th:field="*{postDescription}"> </textarea>
+            <!--<p>post_desc<input type="text" th:field="*{postDescription}"></p> -->
+            <p> <input type="submit" value="Add new post"></p>
+        </form>
+        <br>
+
+
     </tr>
 </div>
 

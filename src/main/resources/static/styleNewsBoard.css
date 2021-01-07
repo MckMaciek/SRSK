@@ -1,0 +1,39 @@
+* {
+
+margin : 0;
+padding : 0;
+font-family: sanf-serif;
+}
+
+.add-post-container .message{
+box-sizing: border-box;
+width: 50%;
+margin: 2px;
+}
+
+.add-post-container .post_desc{
+box-sizing: border-box;
+width: 50%;
+margin: 2px;
+}
+
+
+
+.db-output-posts{
+height: 500px;
+width: 50%;
+
+}
+
+.db-output-posts .post-desc{
+
+background: green;
+white-space: pre-wrap;
+}
+
+
+.db-output-posts .post-desc .td{
+
+background: yellow;
+margin-left:3.5em;
+}
