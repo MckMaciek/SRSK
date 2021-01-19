@@ -47,13 +47,9 @@ public class LoginControler {
         //
 
         List<User> licenses = repo.findAll();
-        System.out.println("[DIAGNOZA] /getUser");
         for (User lic : licenses) {
             if (repo.existsByEmail(user.getEmail())) {
-                    System.out.println("Mail w db");
                 if (encoder.matches(user.getPassword(), lic.getPassword())) {
-                    System.out.println("Haslo to");
-                    System.out.println("/getUser Zalogowano");
                     ModelAndView mav = new ModelAndView("redirect:" + "/main");
                     return mav;
                 }
