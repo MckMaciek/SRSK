@@ -100,14 +100,14 @@ function hideAndShow(){
 }
 function hideAndShowVerySlow(){
 
-	$("#side-menu-container").animate({ height: 'toggle', opacity: 'toggle' }, 800);
+	$("#side-menu-container").animate({ height: 'toggle', opacity: 'toggle' }, 1000);
 }
 
 
+
 window.onload = function(){
-
-	$("#side-menu-container").click(hideAndShowVerySlow());
-
+    $("#side-menu-container").hide();
+	//$("#side-menu-container").click(hideAndShowVerySlow());
 }
 </script>
 

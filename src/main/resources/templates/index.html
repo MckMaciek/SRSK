@@ -29,14 +29,24 @@
 <div class="main-board-container-with-side-menu">
     <div id="main-board-container-tile" class="main-board-container-tile">
         <div class="main-board-container-tile-text">
-            <h2> NEWS BOARD</h2>
-
             <p> Great to see you, <span th:text="${username}"/>! </p>
             <p> Your email: <span th:text="${email}"/> </p>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
                 <p> [ADMIN ACCOUNT] </p>
             </div>
         </div>
+        <div class="chat-box-container">
+            <div class="chat-box">
+            </div>
+
+            <div class="text-area-chat-container">
+                <input class="text-area-chat" type="text" id="lname" name="lname"><br><br>
+                <input class="chat-send" name="index" type="button"  value="SEND"  onclick= placeholder="Submit">
+
+            </div>
+        </div>
+
+
     </div>
 
     <div class="side-menu-container-with-switch-button">
@@ -64,7 +74,7 @@
 
             <div class="side-menu-container-getCode">
                 <form th:action="@{/getCode}" method="GET">
-                    <input name="getCode" type="button"  value="Exam ID"  onclick="window.location='getCode'" placeholder="Submit">
+                    <input name="getCode" type="button"  value="Get Image"  onclick="window.location='getCode'" placeholder="Submit">
                 </form>
             </div>
 
@@ -100,14 +110,14 @@ function hideAndShow(){
 }
 function hideAndShowVerySlow(){
 
-	$("#side-menu-container").animate({ height: 'toggle', opacity: 'toggle' }, 800);
+	$("#side-menu-container").animate({ height: 'toggle', opacity: 'toggle' }, 1000);
 }
 
 
+
 window.onload = function(){
-
-	$("#side-menu-container").click(hideAndShowVerySlow());
-
+    $("#side-menu-container").hide();
+	//$("#side-menu-container").click(hideAndShowVerySlow());
 }
 </script>
 

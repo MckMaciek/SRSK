@@ -35,7 +35,7 @@ public class UserPostsController {
     @Autowired
     UserCommentsRepo userCommentsRepo;
 
-    @RequestMapping(value = "/userPostsView", method = RequestMethod.GET)
+        @RequestMapping(value = "/userPostsView", method = RequestMethod.GET)
     public ModelAndView newsBoardPage(Model model){
 
         model.addAttribute("addNewPostModel", new UserPosts());

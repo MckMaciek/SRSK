@@ -11,27 +11,163 @@
 <div class="flex-container">
 <div class="db-input">
 <form th:action="@{/addStudentFromSite}" method="POST"  th:object="${newStudent}">
-    <p>FIRST NAME <input type="text" th:field="*{fname}"></p>
-    <p>LAST NAME <input type="text" th:field="*{lname}"></p>
-    <p>INDEX <input type="text" th:field="*{index}"></p>
-    <p>GROUP ID <input type="text" th:field="*{group_id}"></p>
-    <p>SUB_GROUP <input type="text" th:field="*{sub_group}"></p>
-    <p> <input type="submit" value="Add new student"></p>
+    <p>FIRST NAME</p>
+    <p> <input type="text" th:field="*{fname}"> </p>
+    <p>LAST NAME</p>
+    <p> <input type="text" th:field="*{lname}"></p>
+    <p>INDEX</p>
+    <p><input type="text" th:field="*{index}"></p>
+    <p>GROUP ID</p>
+    <p><input type="text" th:field="*{group_id}"></p>
+    <p>SUB_GROUP</p>
+    <p><input type="text" th:field="*{sub_group}"></p>
+    <p><input class="addStudent" type="submit" value="Add new student"> </p>
 </form>
 </div>
 
+    <div class="get-back-btn">
+        <input name="index" type="button"  value="Home"  onclick="window.location='http://localhost:8080/main'" placeholder="Submit">
+    </div>
+
 
 <div class="db-output">
+
+    <table>
     <tr th:each="student: ${students}">
+
         <td th:text="${student.getId()}"/>
         <td th:text="${student.getFname()}"/>
         <td th:text="${student.getLname()}"/>
         <td th:text="${student.getIndex()}"/>
         <td th:text="${student.getGroup_id()}"/>
-        <td th:text="${student.getSub_group()}"/> <br>
+        <td th:text="${student.getSub_group()}"/>
     </tr>
+    </table>
+    <div class="students-amount-container">
+      Total amount of Students: <span th:text="${totalAmountOfStudents}">:  </span> Page <span th:text="${currentPage}"> </span> of <span th:text="${totalAmountOfPages}"></span>
+        ->
+        <span th:each="i : ${#numbers.sequence(1,totalAmountOfPages)}">
+            <a th:href="@{'/page/' + ${i}}" > [[${i}]] </a> &nbsp; &nbsp;
+        </span>
+
+
+    </div>
+
 </div>
 </div>
+
+<style>
+    * {
+
+margin : 0px;
+padding: 0px;
+font-family: Sanf-Serif;
+
+color: black;
+}
+
+.flex-container{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: space-around;
+    /*height: 100%;*/
+    width:100%;
+    flex-flow: row wrap;
+    align-items: flex-start;
+
+}
+
+
+.db-input{
+
+    display: flex;
+    position: sticky;
+    top:0;
+    margin: 10px;
+    flex-direction: column;
+    /*flex: 1;
+    flex-order: 2;
+    align-self: flex-end;*/
+    height: 230px;
+    border: 5px solid yellow;
+    align-items: center;
+    padding: 5px;
+    justify-content: center;
+
+
+}
+
+/*
+db-input-remove{
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    width: 300px;
+    flex: 1;
+    height: 150px;
+    border: 5px solid green;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+     position: fixed;
+     top: -160px;
+     right: 0;
+     align-self: flex-end;
+     background: green;
+}
+*/
+
+.db-output{
+
+    height: 100%;
+    flex-order: 1;
+    padding: 1px;
+    margin: 10px;
+    display: flex;
+    flex: 2;
+    width: 30%;
+    flex-direction: column;
+    /*flex-flow: row wrap;*/
+}
+
+
+.db-input .form{
+
+    padding: 2px;
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.db-output table{
+    width: 100%;
+    border: 1px solid black;
+}
+.db-output tr{
+
+    border: 1px solid black;
+}
+.db-output td{
+
+    border: 1px solid black;
+}
+
+.addStudent{
+
+    margin-top: 7px;
+    margin-left: 25px;
+
+}
+
+
+
+
+</style>
+
+
 
 </body>
 </html>
