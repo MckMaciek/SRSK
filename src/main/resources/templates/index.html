@@ -13,7 +13,7 @@
     <title>Home page</title>
 </head>
 
-<body>
+<body onload="connect();">
 
 <div class="nameInCorner-container">
     <div class="nameInCorner-container-tile">
@@ -37,12 +37,13 @@
         </div>
         <div class="chat-box-container">
             <div class="chat-box">
+                <textarea readonly  id="chat-box-messages-display" class="chat-box-messages-display" name="chat-box-messages-display"></textarea>
             </div>
 
             <div class="text-area-chat-container">
-                <input class="text-area-chat" type="text" id="lname" name="lname"><br><br>
-                <input class="chat-send" name="index" type="button"  value="SEND"  onclick= placeholder="Submit">
-
+                <input class="text-area-chat" type="text" id="messageToSend" name="lname"><br><br>
+                <input class="chat-send" name="index" type="button" id="button_send_message" value="SEND"  onclick="sendMessage()">
+                <p id="response">  </p>
             </div>
         </div>
 
@@ -114,12 +115,17 @@ function hideAndShowVerySlow(){
 }
 
 
-
+/*
 window.onload = function(){
     $("#side-menu-container").hide();
 	//$("#side-menu-container").click(hideAndShowVerySlow());
-}
+}*/
 </script>
+
+
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="connection.js"> </script>
 
 </body>
 </html>

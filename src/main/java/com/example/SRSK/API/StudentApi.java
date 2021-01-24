@@ -1,46 +1,44 @@
 package com.example.SRSK.API;
 
 import com.example.SRSK.model.Student;
+import com.example.SRSK.repositories.StudentRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-/*
+
 @RestController
 @RequestMapping("/api/students")
+@CrossOrigin
 public class StudentApi {
 
-    static private List<Student> studentList;
-
-    public StudentApi() {
-        this.studentList = new ArrayList<Student>();
-        studentList.add(new Student(1L,"Maciej","Musiał","18","9999"));
-    }
+    @Autowired
+    StudentRepo studentRepo;
 
     @GetMapping("/all")
-    public static List<Student> getAll(){
-        return studentList;
+    public List<Student> getAll(){
+        return studentRepo.findAll();
     }
     @GetMapping
-    public static Student getByID(@RequestParam long index){
-        Optional<Student> first = studentList.stream().
-                filter(element -> element.getId() == index).findFirst();
+    public Student getByID(@RequestParam String index){
+        Optional<Student> first = studentRepo.findAll().stream().
+                filter(element -> element.getIndex() == index).findFirst();
         return first.get();
     }
     @PostMapping
-    public static boolean addStudent(@RequestBody Student student){
-        return studentList.add(student);
+    public  void addStudent(@RequestBody Student student){
+        studentRepo.save(student);
     }
     @PutMapping
-    public static boolean updateStudent(@RequestBody Student student){
-        return studentList.add(student);
+    public void updateStudent(@RequestBody Student student){
+        studentRepo.save(student);
     }
     @DeleteMapping
-    public boolean deleteStudent(@RequestParam long index){
-        return studentList.removeIf(element -> element.getId() == index);
+    public boolean deleteStudent(@RequestParam String index){
+        return studentRepo.findAll().removeIf(element -> element.getIndex() == index);
     }
 
 
 }
-*/
