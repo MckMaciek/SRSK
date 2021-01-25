@@ -79,10 +79,17 @@
                 </form>
             </div>
 
+            <div class="side-menu-containter-userPosts">
+                <form action="/userPostsView" method="GET">
+                    <input name="Posts" type="button"  onclick="window.location='userPostsView'" value="Posts"  placeholder="Submit">
+                </form>
+            </div>
+
             <div class="side-menu-container-about">
                 <form action="/about" method="GET">
                     <input name="about" type="button"  onclick="window.location='about'" value="About"  placeholder="Submit">
                 </form>
+            </div>
 
                 <div class="side-menu-container-changePassword">
                     <form th:action="@{/changePassword}" method="GET">
