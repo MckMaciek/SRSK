@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,7 +53,7 @@ public class UserPostsController {
                                        @ModelAttribute UserComments userComments,
                                        Model model, Principal principal) {
 
-        DateFormat dateformat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date currentDate = new Date();
         userPosts.setDate(dateformat.format(currentDate));
 
@@ -66,7 +67,7 @@ public class UserPostsController {
         userPosts.setUserComments(userComments);
         UserComments userCommented = new UserComments(userPosts,userComments.getPostDescription(), userComments.getHeader(),dateformat.format(currentDate));
 
-        //UserPosts userPostsToAdd = new UserPosts(getCurrentUser,userPosts.getPostDescription(),userPosts.getHeader(), userPosts.getDate());
+        UserPosts userPostsToAdd = new UserPosts(getCurrentUser,userPosts.getPostDescription(),userPosts.getHeader(), userPosts.getDate());
 
         userCommentsRepo.save(userCommented);
 
@@ -74,11 +75,23 @@ public class UserPostsController {
         return mav;
     }
 
+    @RequestMapping(value = "/userPostsDelete/{userId}", method =  RequestMethod.GET)
+    public ModelAndView adminDeletePost(@PathVariable("userId") Long userId, Model model, Principal principal){
+
+
+        UserPosts userPostToBeDeleted =   userPostsRepo.findById(userId).get();
+        userPostsRepo.delete(userPostToBeDeleted);
+
+        ModelAndView mav = new ModelAndView("redirect:" + "/userPostsView");
+        return mav;
+    }
+
+
 
     @RequestMapping(value = "/userPostsAdd", method = RequestMethod.POST)
     public ModelAndView adminAddPost(@ModelAttribute UserPosts userPosts, Model model, Principal principal){
 
-        DateFormat dateformat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        DateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date currentDate = new Date();
         userPosts.setDate(dateformat.format(currentDate));
 

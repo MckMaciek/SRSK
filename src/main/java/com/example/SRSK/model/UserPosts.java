@@ -29,7 +29,7 @@ public class UserPosts {
     private String date;
 
 
-    public UserPosts(User user, String postDescription, String header, String date) {
+    public UserPosts( User user, String postDescription, String header, String date) {
         this.user = user;
         this.postDescription = postDescription;
         this.header = header;
@@ -53,7 +53,7 @@ public class UserPosts {
 
     public void setUser(User user) {
         this.user = user;
-    }
+   }
 
     public String getPostDescription() {
         return postDescription;
@@ -81,7 +81,7 @@ public class UserPosts {
 
     public UserComments getUserComments() {
         return userComments;
-    }
+   }
 
     public void setUserComments(UserComments userComments) {
         this.userComments = userComments;
@@ -91,9 +91,18 @@ public class UserPosts {
         return "[EMAIL] " +
                 user.getEmail() +
                 " [USERNAME] " + user.getUsername() + '\n' +
-                " [ROLE] " + user.getRole() + " ";
+               " [ROLE] " + user.getRole() + " ";
     }
 
 
-
+    @Override
+    public String toString() {
+        return "UserPosts{" +
+                "id=" + id +
+                ", user=" + user +
+                ", postDescription='" + postDescription + '\'' +
+                ", header='" + header + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

@@ -88,7 +88,6 @@ public class GetStudentsTableController {
         model.addAttribute("totalAmountOfPages", page.getTotalPages());
         model.addAttribute("totalAmountOfStudents", page.getTotalElements());
 
-        System.out.println("JESTEM TUTAJJJ");
         return new ModelAndView("studentsView.html");
         //studentsView.html
     }

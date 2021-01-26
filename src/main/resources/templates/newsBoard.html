@@ -6,51 +6,65 @@
     <link rel="stylesheet" href="styleNewsBoard.css">
 </head>
 <body>
-<p> Tutaj dodawane są posty</p>
-<div class="add-post-container">
-    <!--sec:authorize="hasRole('ROLE_ADMIN')" -->
-<form th:action="@{/userPostsAdd}"  method="POST" th:object="${addNewPostModel}">
-    <p><input class="post_desc" type="text" th:field="*{header}"></p>
-    <textarea class="message" rows="10" cols="30" th:field="*{postDescription}"> </textarea>
-    <!--<p>post_desc<input type="text" th:field="*{postDescription}"></p> -->
-    <p> <input type="submit" value="Add new post"></p>
-</form>
+<div class="news-board">
+    <p>NEWSBOARD</p>
+</div>
+<div class="go-bck-button">
+    <a class="back-btn" th:href="@{/main}"> GO BACK </a>
 </div>
 
-<div class="db-output-posts">
-    <br>
-    <tr th:each="post: ${addedPosts}">
-        [----------------------------------------------------------------------------------------------]
-        <br>
-        <td th:text="${post.printOP()}"/>
-        <br>
-        [TOPIC]-
-        <td th:text="${post.getHeader()}"/>
-        <br>
 
-        <div class="post-desc">
-        <td th:text="${post.getPostDescription()}"/>
-        <br>
+<div class="flexbox-container">
+    <div class="user-posts-container">
+
+        <div class="add-post-container" sec:authorize="hasRole('ROLE_ADMIN')">
+            <!--sec:authorize="hasRole('ROLE_ADMIN')" -->
+            <form th:action="@{/userPostsAdd}"  method="POST" th:object="${addNewPostModel}">
+                <input class="post_desc" type="text" th:field="*{header}">
+
+                <div class="submit-and-text">
+                <textarea class="message" rows="10" cols="30"  th:field="*{postDescription}"> </textarea>
+                <!--<p>post_desc<input type="text" th:field="*{postDescription}"></p> -->
+                <p> <input type="submit" value="Add new post"></p>
+                </div>
+            </form>
         </div>
-        [--------------------------------------------]
-        posted on <td th:text="${post.getDate()}"/>
+
+        <div class="db-output-posts">
         <br>
-        Comments
-        <br>
-        <td th:text="${post.getUserComments()}"/>
-        <br>
-        <form th:action="@{/userCommentAdd}"  method="POST" th:object="${addNewComment}">
-            <p><input class="post_desc" type="text" th:field="*{header}"></p>
-            <textarea class="message" rows="10" cols="30" th:field="*{postDescription}"> </textarea>
-            <!--<p>post_desc<input type="text" th:field="*{postDescription}"></p> -->
-            <p> <input type="submit" value="Add new post"></p>
-        </form>
-        <br>
+        <tr th:each="post: ${addedPosts}">
+
+            <div class="user-post">
+                <p>[------------------------------------------------------------------------------------------------------------------------------------------]</p>
+                <td th:text="${post.printOP()}"/>
+                <br>
+                <span>[TOPIC]-</span>
+                <td th:text="${post.getHeader()}"/>
+                <br>
+            </div>
+
+            <div class="post-desc">
+                <td th:text="${post.getPostDescription()}"/>
+                <br>
+                <p> posted on <td th:text="${post.getDate()}"/>
+            </div>
+                  <a sec:authorize="hasRole('ROLE_ADMIN')"  th:href="@{'/userPostsDelete/' + ${post.getId()}}" name="id" > DELETE </a>
+                    <!--        Comments-->
+    <!--        <td th:text="${post.getUserComments()}"/>-->
+                <br>
+    <!--        <form th:action="@{/userCommentAdd}"  method="POST" th:object="${addNewComment}">-->
+    <!--            <p><input class="post_desc" type="text" th:field="*{header}"></p>-->
+    <!--            <textarea class="message" rows="10" cols="30" th:field="*{postDescription}"> </textarea>-->
+                <!--<p>post_desc<input type="text" th:field="*{postDescription}"></p> -->
+    <!--            <p> <input type="submit" value="Add new post"></p>-->
+                </form>
+                </div>
+                <br>
 
 
-    </tr>
-</div>
-
+        </tr>
+    </div>
+    </div>
 
 </body>
 </html>
